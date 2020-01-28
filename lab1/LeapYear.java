@@ -1,7 +1,21 @@
 /** Class that determines whether or not a year is a leap year.
- *  @author YOUR NAME HERE
+ *  @author Atlantic
  */
 public class LeapYear {
+
+    /** Determine whether a year is a leap year. 
+     * @param year to be analyzed.
+     */
+    public static boolean isLeapYear(int year) {
+        boolean isLP = false;
+        if((year % 400) == 0) {
+            isLP = true;
+        }
+        else if(((year % 4) == 0) && ((year % 100) != 0)) {
+            isLP = true;
+        }
+        return isLP;
+    }
 
     /** Calls isLeapYear to print correct statement.
      *  @param  year to be analyzed
