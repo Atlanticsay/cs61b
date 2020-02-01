@@ -42,6 +42,9 @@ public class IntList {
             L.first = L.first * L.first;
             L = L.rest;
         }
+        // The parameter of the function is passed by value, i.e. the address of the list, pointing to the first Node.
+        // Therefore, when changing the "rest" of the L in this function, will not change where the "L" outside
+        // this function points.
     }
 
     /**
@@ -82,7 +85,19 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList p = A.rest;
+        while(p.rest != null) {
+            p = p.rest;
+        }
+        p.rest = B;
+        return A;
+//        IntList p = A;
+//        if(p.rest == null) {
+//            p.rest = B;
+//            return A;
+//        }
+//        p = p.rest;
+//        return dcatenate(p, B);
     }
 
     /**
@@ -91,7 +106,16 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList catAB = new IntList(A.first, null);
+        IntList pA = A.rest;
+        IntList pC = catAB;
+        while(pA.rest != null) {
+            pC.rest = new IntList(pA.first, null);
+            pC = pC.rest;
+            pA = pA.rest;
+        }
+        pC.rest = new IntList(pA.first, B);
+        return catAB;
     }
 
 
