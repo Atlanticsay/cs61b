@@ -60,7 +60,17 @@
     /** Prints the items in the deque from first to last, separated by a space. 
      * Once all the items have been printed, print out a new line. */
     public void printDeque() {
-        
+        Node p = sentinel.next;
+        if (p == null) {
+            System.out.println();
+            return;
+        }
+        while (p.next != sentinel) {
+            System.out.print(p.item.toString() + ' ');
+            p = p.next;
+        }
+        System.out.print(p.item.toString() + ' ');
+        System.out.println();
     }
 
 
