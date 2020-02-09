@@ -28,11 +28,17 @@ public class ArrayDeque<T> {
      * After resizing, the nextFirst param always set to
      * the position next to the constant STARTPOS.*/
     private void resize(int capacity) {
+        int capacityMax = (int) ((items.length + 1) / FACTOR);
+        int capacityExt = (int) (capacity / FACTOR);
+
+        int cap = capacityExt;
         if (capacity <= (STARTPOS + 2)) {
-            capacity = STARTPOS + 2;
+            cap = STARTPOS + 2;
+        } else if (capacityExt > capacityMax) {
+            cap = capacityMax;
         }
 
-        T[] a = (T[]) new Object[(int) (capacity / FACTOR)];
+        T[] a = (T[]) new Object[cap];
         System.arraycopy(items, nextFirst + 1, a, STARTPOS, size);
         items = a;
         nextFirst = STARTPOS - 1;
@@ -51,7 +57,7 @@ public class ArrayDeque<T> {
 
     /** Adds an item of type T to the back of the deque.*/
     public void addLast(T item) {
-        if ((items.length == size) || (nextLast >= (items.length + 1))) {
+        if ((items.length == size) || (nextLast >= items.length)) {
             resize(size + 1);
         }
         items[nextLast] = item;
@@ -95,7 +101,7 @@ public class ArrayDeque<T> {
         size -= 1;
 
         // downsizing
-        if((size / items.length) <= 0.25) {
+        if ((size / items.length) <= 0.25) {
             resize(size);
         }
         return firstItem;
@@ -113,7 +119,7 @@ public class ArrayDeque<T> {
         size -= 1;
 
         // downsizing
-        if((size / items.length) <= 0.25) {
+        if ((size / items.length) <= 0.25) {
             resize(size);
         }
         return lastItem;
