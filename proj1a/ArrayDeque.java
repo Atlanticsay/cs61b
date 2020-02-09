@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
 
     /** Adds an item of type T to the front of the deque.*/
     public void addFirst(T item) {
-        if ((items.length == size) || (nextFirst == 1)) {
+        if ((items.length == size) || (nextFirst < 1)) {
             resize(size + 1);
         }
         items[nextFirst] = item;
