@@ -51,7 +51,7 @@ public class ArrayDeque<T> {
 
     /** Adds an item of type T to the back of the deque.*/
     public void addLast(T item) {
-        if ((items.length == size) || (nextLast == (items.length - 1))) {
+        if ((items.length == size) || (nextLast >= (items.length + 1))) {
             resize(size + 1);
         }
         items[nextLast] = item;
@@ -94,6 +94,7 @@ public class ArrayDeque<T> {
         nextFirst += 1;
         size -= 1;
 
+        // downsizing
         if((size / items.length) <= 0.25) {
             resize(size);
         }
@@ -111,6 +112,7 @@ public class ArrayDeque<T> {
         nextLast -= 1;
         size -= 1;
 
+        // downsizing
         if((size / items.length) <= 0.25) {
             resize(size);
         }
