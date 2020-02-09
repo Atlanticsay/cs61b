@@ -11,10 +11,16 @@
         public Node next; 
         public T item;
 
-        public Node(T i, Node p, Node n) {
+        public Node(T value, Node p, Node n) {
             prev = p;
             next = n;
-            item = i;
+            item = value;
+        }
+
+        public Node(T value) {
+            prev = null;
+            next = null;
+            item = value;
         }
     }
 
@@ -23,22 +29,30 @@
 
     /** Create an empty double-linked list. */
     public LinkedListDeque() {
+        sentinel = new Node(null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
         size = 0;
-        sentinel = new Node(null, null, null);
     }
     
     /** Create a list that only has one Node (except for the sentinel).*/
     public LinkedListDeque(T item) {
         size = 1;
-        sentinel = new Node(null, null, null);
+        sentinel = new Node(null);
         sentinel.next = new Node(item, sentinel, sentinel);
         sentinel.prev = sentinel.next;
     }
 
-    /** Return of deepcopy of a new list. */
-    public LinkedListDeque(LinkedListDeque other) {  
-        size = other.size();      
+    /** Return of deepcopy of a given list. */
+    public LinkedListDeque(LinkedListDeque other) {
+        sentinel = new Node(null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
+        size = 0;
 
+        for(int i = 0; i < other.size; i++) {
+            addLast((T) other.get(i));
+        }
     }
 
 
@@ -125,7 +139,7 @@
      * If no such item exists, returns null. Must not alter the deque!
     */
     public T get(int index) {
-        if (size == 0) {
+        if ((index >= size) || (index < 0)) {
             return null;
         }
         Node p = sentinel.next;
@@ -139,26 +153,23 @@
 
     
     /** Return the ith element of the list recursively.
-     * @param index: ith, started from
+     * @param index: ith, started from 0
      */
     public T getRecursive(int index) {
-        if (size == 0) {
+        if ((index >= size) || (index < 0)) {
             return null;
-        } 
-//!!!
-        Node pst = sentinel.next;
-        Node p = pst;      
-        if (index == 0) {
+        }
+        Node p = sentinel.next;
+        return getRecursiveHelper(index, p);
+    }
+
+    /** The helper method of getRecursive. */
+    private T getRecursiveHelper(int i, Node p) {
+        if(i == 0) {
             return p.item;
         }
         p = p.next;
-        return(index-1);
+        return getRecursiveHelper(i-1, p);
     }
-
-
-
-
-
-
 
  }
