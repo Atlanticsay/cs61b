@@ -11,10 +11,11 @@ public class ArrayDeque<T> {
     /** Create an empty double ended Array List.*/
     public ArrayDeque() {
         items = (T[]) new Object[8];
-        nextFirst = STARTPOS - 1;
-        nextLast = nextFirst + 1;
         size = 0;
         FACTOR = 0.25;
+        STARTPOS = 4;
+        nextFirst = STARTPOS - 1;
+        nextLast = nextFirst + 1;
     }
 
 //    /** Creates a deep copy of ArrayDeque.*/
@@ -27,8 +28,8 @@ public class ArrayDeque<T> {
      * After resizing, the nextFirst param always set to
      * the position next to the constant STARTPOS.*/
     private void resize(int capacity) {
-        if (capacity < size) {
-            capacity = size;
+        if (capacity < (STARTPOS + 2)) {
+            capacity = STARTPOS + 2;
         }
 
         T[] a = (T[]) new Object[(int) (capacity / FACTOR)];
