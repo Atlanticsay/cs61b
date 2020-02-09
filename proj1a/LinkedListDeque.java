@@ -6,7 +6,7 @@
  public class LinkedListDeque<T> {
      
     /** A basic nested class for the list. */
-    public class Node {
+    private class Node {
         public Node prev;
         public Node next; 
         public T item;
@@ -35,25 +35,25 @@
         size = 0;
     }
     
-    /** Create a list that only has one Node (except for the sentinel).*/
-    public LinkedListDeque(T item) {
-        size = 1;
-        sentinel = new Node(null);
-        sentinel.next = new Node(item, sentinel, sentinel);
-        sentinel.prev = sentinel.next;
-    }
-
-    /** Return of deepcopy of a given list. */
-    public LinkedListDeque(LinkedListDeque other) {
-        sentinel = new Node(null);
-        sentinel.prev = sentinel;
-        sentinel.next = sentinel;
-        size = 0;
-
-        for(int i = 0; i < other.size; i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    /** Create a list that only has one Node (except for the sentinel).*/
+//    public LinkedListDeque(T item) {
+//        size = 1;
+//        sentinel = new Node(null);
+//        sentinel.next = new Node(item, sentinel, sentinel);
+//        sentinel.prev = sentinel.next;
+//    }
+//
+//    /** Return of deepcopy of a given list. */
+//    public LinkedListDeque(LinkedListDeque other) {
+//        sentinel = new Node(null);
+//        sentinel.prev = sentinel;
+//        sentinel.next = sentinel;
+//        size = 0;
+//
+//        for(int i = 0; i < other.size; i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
 
     /** Returns the number of items in the deque.*/
@@ -128,7 +128,7 @@
         }
         Node pLast = sentinel.prev;
         Node pScdLast = pLast.prev; // pointer: the second last node
-        sentinel.next = pScdLast;
+        sentinel.prev = pScdLast;
         pScdLast.next = sentinel;
         size--;
         return pLast.item;
