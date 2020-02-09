@@ -92,14 +92,15 @@
     public void addFirst(T item) {
         Node pFirst  = sentinel.next;
         sentinel.next = new Node(item, sentinel, pFirst);
-        size += 1;
+        size++;
     }
 
     /** Add a node to the end of the list. */
     public void addLast(T item) {
-        Node pLast = sentinel.prev;
-        sentinel.prev = new Node(item, pLast, sentinel);
-        size += 1;
+        Node pLastOld = sentinel.prev;
+        sentinel.prev = new Node(item, pLastOld, sentinel);
+        pLastOld.next = sentinel.prev;
+        size++;
     }
 
 
@@ -112,9 +113,9 @@
 
         Node pFirst = sentinel.next;
         Node pSecond = pFirst.next;
-        sentinel.next = pFirst.next;
+        sentinel.next = pSecond;
         pSecond.prev = sentinel;
-        size -= 1;
+        size--;
         return pFirst.item;
     }
 
@@ -125,11 +126,11 @@
         if (size == 0) {
             return null;
         }
-        Node pLast = sentinel.next;
+        Node pLast = sentinel.prev;
         Node pScdLast = pLast.prev; // pointer: the second last node
         sentinel.next = pScdLast;
         pScdLast.next = sentinel;
-        size -= 1;
+        size--;
         return pLast.item;
     }    
 
