@@ -91,7 +91,7 @@ public class LinkedListDeque<T> {
         Node pFirstNew = new Node(item, sentinel, pFirstOld);
         pFirstOld.prev = pFirstNew;
         sentinel.next = pFirstNew;
-        size ++;
+        size++;
     }
 
     /** Add a node to the end of the list. */
@@ -100,7 +100,7 @@ public class LinkedListDeque<T> {
         Node pLastNew = new Node(item, pLastOld, sentinel);
         sentinel.prev = pLastNew;
         pLastOld.next = pLastNew;
-        size ++;
+        size++;
     }
 
 

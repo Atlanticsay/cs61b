@@ -40,12 +40,12 @@ public class ArrayDeque<T> {
 
     /** Adds an item of type T to the front of the deque.*/
     public void addFirst(T item) {
-        if ((items.length == size) || (nextFirst == 0)) {
+        if ((items.length == size) || (nextFirst == 1)) {
             resize(size + 1);
         }
         items[nextFirst] = item;
-        nextFirst = nextFirst - 1;
-        size ++;
+        nextFirst--;
+        size++;
     }
 
     /** Adds an item of type T to the back of the deque.*/
@@ -54,8 +54,8 @@ public class ArrayDeque<T> {
             resize(size + 1);
         }
         items[nextLast] = item;
-        nextLast ++;
-        size ++;
+        nextLast++;
+        size++;
     }
 
     /** Returns true if deque is empty, false otherwise.*/
@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
         Once all the items have been printed, print out a new line.*/
     public void printDeque() {
         if (size != 0) {
-            for (int i = nextFirst + 1; i < nextLast; i ++) {
+            for (int i = nextFirst + 1; i < nextLast; i++) {
                 System.out.print(items[i].toString() + ' ');
             }
         }
