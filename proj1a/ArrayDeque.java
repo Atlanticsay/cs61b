@@ -12,7 +12,7 @@ public class ArrayDeque<T> {
     public ArrayDeque() {
         items = (T[]) new Object[8];
         size = 0;
-        FACTOR = 0.25;
+        FACTOR = 0.75;
         STARTPOS = 4;
         nextFirst = STARTPOS - 1;
         nextLast = nextFirst + 1;
@@ -89,11 +89,14 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-
         T firstItem = items[nextFirst + 1];
         items[nextFirst + 1] = null;
         nextFirst += 1;
         size -= 1;
+
+        if((size / items.length) <= 0.25) {
+            resize(size);
+        }
         return firstItem;
     }
 
@@ -103,22 +106,25 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-
         T lastItem = items[nextLast - 1];
         items[nextLast - 1] = null;
         nextLast -= 1;
         size -= 1;
+
+        if((size / items.length) <= 0.25) {
+            resize(size);
+        }
         return lastItem;
     }
 
     /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
      * If no such item exists, returns null. Must not alter the deque!*/
     public T get(int index) {
-        if ((index <= nextFirst) || (index >= nextLast)) {
+        int idx = index + nextFirst + 1;
+        if (idx >= nextLast) {
             return null;
         }
-        return items[index];
+        return items[idx];
     }
-
-
 }
+
