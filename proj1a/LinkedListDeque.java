@@ -2,13 +2,12 @@
  * using circular sentinel topology.
  * @author Atlantic.
  */
-
- public class LinkedListDeque<T> {
+public class LinkedListDeque<T> {
      
     /** A basic nested class for the list. */
     private class Node {
         public Node prev;
-        public Node next; 
+        public Node next;
         public T item;
 
         public Node(T value, Node p, Node n) {
@@ -34,7 +33,7 @@
         sentinel.next = sentinel;
         size = 0;
     }
-    
+
 //    /** Create a list that only has one Node (except for the sentinel).*/
 //    public LinkedListDeque(T item) {
 //        size = 1;
@@ -50,7 +49,7 @@
 //        sentinel.next = sentinel;
 //        size = 0;
 //
-//        for(int i = 0; i < other.size; i++) {
+//        for (int i = 0; i < other.size; i++) {
 //            addLast((T) other.get(i));
 //        }
 //    }
@@ -64,7 +63,7 @@
 
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if (size == 0) {
+        if(size == 0) {
             return true;
         }
         return false;
@@ -166,11 +165,10 @@
 
     /** The helper method of getRecursive. */
     private T getRecursiveHelper(int i, Node p) {
-        if(i == 0) {
+        if (i == 0) {
             return p.item;
         }
         p = p.next;
-        return getRecursiveHelper(i-1, p);
+        return getRecursiveHelper(i - 1, p);
     }
-
- }
+}

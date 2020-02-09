@@ -24,10 +24,15 @@ public class ArrayDeque<T> {
     }
 
     /** Resize the underlying array to the target capacity.
-     * After resizing, the nextFirst param always set to the position next to the constant STARTPOS.*/
+     * After resizing, the nextFirst param always set to
+     * the position next to the constant STARTPOS.*/
     private void resize(int capacity) {
+        if(capacity < size) {
+            capacity = size;
+        }
+
         T[] a = (T[]) new Object[(int) (capacity / FACTOR)];
-        System.arraycopy(items, nextFirst+1, a, STARTPOS, size);
+        System.arraycopy(items, nextFirst + 1, a, STARTPOS, size);
         items = a;
         nextFirst = STARTPOS - 1;
         nextLast = STARTPOS + size;
@@ -35,35 +40,29 @@ public class ArrayDeque<T> {
 
     /** Adds an item of type T to the front of the deque.*/
     public void addFirst(T item) {
-        if (items.length == size) {
-            resize(size+1);
-            items[nextFirst] = item;
+        if ((items.length == size) || (nextFirst == 0)) {
+            resize(size + 1);
         }
-        if (nextFirst == 0) {
-            resize(size+1); // relocate the first item of current array
-        }
-
         items[nextFirst] = item;
         nextFirst = nextFirst - 1;
-        size += 1;
+        size ++;
     }
 
     /** Adds an item of type T to the back of the deque.*/
     public void addLast(T item) {
-        if (items.length == size) {
-            resize(size+1);
-            items[nextLast] = item;
+        if ((items.length == size) || (nextLast == (items.length - 1))) {
+            resize(size + 1);
         }
-
         items[nextLast] = item;
-        nextLast += 1;
-        size += 1;
+        nextLast ++;
+        size ++;
     }
 
     /** Returns true if deque is empty, false otherwise.*/
     public boolean isEmpty() {
-        if (size == 0)
+        if (size == 0){
             return true;
+        }
         return false;
     }
 
@@ -75,8 +74,8 @@ public class ArrayDeque<T> {
     /** Prints the items in the deque from first to last, separated by a space.
         Once all the items have been printed, print out a new line.*/
     public void printDeque() {
-        if(size != 0) {
-            for(int i = nextFirst + 1; i < nextLast; i++) {
+        if (size != 0) {
+            for (int i = nextFirst + 1; i < nextLast; i++) {
                 System.out.print(items[i].toString() + ' ');
             }
         }
