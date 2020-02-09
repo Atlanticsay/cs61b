@@ -12,7 +12,7 @@ public class ArrayDeque<T> {
     public ArrayDeque() {
         items = (T[]) new Object[8];
         size = 0;
-        FACTOR = 0.75;
+        FACTOR = 0.3;
         STARTPOS = 4;
         nextFirst = STARTPOS - 1;
         nextLast = nextFirst + 1;
@@ -28,7 +28,7 @@ public class ArrayDeque<T> {
      * After resizing, the nextFirst param always set to
      * the position next to the constant STARTPOS.*/
     private void resize(int capacity) {
-        if (capacity < (STARTPOS + 2)) {
+        if (capacity <= (STARTPOS + 2)) {
             capacity = STARTPOS + 2;
         }
 
