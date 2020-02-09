@@ -19,6 +19,15 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
+	/* Utility method for printing out empty checks. */
+	public static boolean checkItem(Object expected, Object actual) {
+		if (expected != actual) {
+			System.out.println("item returned " + actual + ", but expected: " + expected);
+			return false;
+		}
+		return true;
+	}
+
 	/* Prints a nice message based on whether a test passed. 
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
@@ -77,9 +86,19 @@ public class LinkedListDequeTest {
 		// should not be empty 
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
-		lld1.removeFirst();
+		int a = lld1.removeFirst();
 		// should be empty 
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
+		passed = checkItem(10, a) && passed;
+
+		lld1.addFirst(11);
+		// should return the first item
+		passed = checkItem(11, lld1.get(0)) && passed;
+
+		lld1.addFirst(15);
+		int b = lld1.removeLast();
+		// should return the last item
+		passed = checkItem(15, b) && passed;
 
 		printTestStatus(passed);
 		/**/

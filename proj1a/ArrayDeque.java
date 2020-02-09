@@ -17,17 +17,17 @@ public class ArrayDeque<T> {
         FACTOR = 0.25;
     }
 
-    /** Creates a deep copy of ArrayDeque.*/
-    public ArrayDeque(ArrayDeque other) {
-        T[] a = (T[]) new Object[items.length];
-        System.arraycopy(items, nextFirst+1, a, nextFirst+1, size);
-    }
+//    /** Creates a deep copy of ArrayDeque.*/
+//    public ArrayDeque(ArrayDeque other) {
+//        T[] a = (T[]) new Object[items.length];
+//        System.arraycopy(items, nextFirst + 1, a, nextFirst + 1, size);
+//    }
 
     /** Resize the underlying array to the target capacity.
      * After resizing, the nextFirst param always set to
      * the position next to the constant STARTPOS.*/
     private void resize(int capacity) {
-        if(capacity < size) {
+        if (capacity < size) {
             capacity = size;
         }
 
@@ -60,7 +60,7 @@ public class ArrayDeque<T> {
 
     /** Returns true if deque is empty, false otherwise.*/
     public boolean isEmpty() {
-        if (size == 0){
+        if (size == 0) {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
         Once all the items have been printed, print out a new line.*/
     public void printDeque() {
         if (size != 0) {
-            for (int i = nextFirst + 1; i < nextLast; i++) {
+            for (int i = nextFirst + 1; i < nextLast; i ++) {
                 System.out.print(items[i].toString() + ' ');
             }
         }

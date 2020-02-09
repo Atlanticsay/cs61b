@@ -1,14 +1,12 @@
 /** Create a double linked list inputting generic types and 
- * using circular sentinel topology.
- * @author Atlantic.
- */
+ * using circular sentinel topology. @author Atlantic. */
 public class LinkedListDeque<T> {
      
     /** A basic nested class for the list. */
     private class Node {
-        public Node prev;
-        public Node next;
-        public T item;
+        private Node prev;
+        private Node next;
+        private T item;
 
         public Node(T value, Node p, Node n) {
             prev = p;
@@ -63,7 +61,7 @@ public class LinkedListDeque<T> {
 
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if(size == 0) {
+        if (size == 0) {
             return true;
         }
         return false;
@@ -89,17 +87,20 @@ public class LinkedListDeque<T> {
 
     /** Add a node to the front of the list. */
     public void addFirst(T item) {
-        Node pFirst  = sentinel.next;
-        sentinel.next = new Node(item, sentinel, pFirst);
-        size++;
+        Node pFirstOld  = sentinel.next;
+        Node pFirstNew = new Node(item, sentinel, pFirstOld);
+        pFirstOld.prev = pFirstNew;
+        sentinel.next = pFirstNew;
+        size ++;
     }
 
     /** Add a node to the end of the list. */
     public void addLast(T item) {
         Node pLastOld = sentinel.prev;
-        sentinel.prev = new Node(item, pLastOld, sentinel);
-        pLastOld.next = sentinel.prev;
-        size++;
+        Node pLastNew = new Node(item, pLastOld, sentinel);
+        sentinel.prev = pLastNew;
+        pLastOld.next = pLastNew;
+        size ++;
     }
 
 
@@ -172,3 +173,5 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(i - 1, p);
     }
 }
+
+
