@@ -81,7 +81,6 @@ public class ArrayDeque<T> {
         }
         items[nextLast] = item;
         nextLast = nextIndex(nextLast);
-        size++;
     }
 
 
