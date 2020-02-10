@@ -46,15 +46,15 @@ public class ArrayDeque<T> {
      * the position next to the constant STARTPOS.*/
     private void resize(int capacity) {
         if (capacity < size) {
-            capacity = size;
+            capacity = size + 1;
         }
-        T[] a = (T[]) new Object[(int) (capacity * RESZ_FACTOR)];
+        T[] a = (T[]) new Object[(int) (capacity)];
 
         // copy the circular array
         int p = nextIndex(nextFirst);
-        for (int i = 0; i < size; i ++) {
-             a[i] = items[p];
-             p = nextIndex(p);
+        for (int i = 0; i < size; i++) {
+            a[i] = items[p];
+            p = nextIndex(p);
         }
         items = a;
         nextFirst = items.length - 1;
@@ -64,19 +64,20 @@ public class ArrayDeque<T> {
 
     /** Adds an item of type T to the front of the deque.*/
     public void addFirst(T item) {
+        size++;
         if (items.length == size) {
-            resize(size + 1);
+            resize((int) (size  * RESZ_FACTOR));
         }
         items[nextFirst] = item;
         nextFirst = beforeIndex(nextFirst);
-        size++;
     }
 
 
     /** Adds an item of type T to the back of the deque.*/
     public void addLast(T item) {
+        size++;
         if (items.length == size) {
-            resize(size + 1);
+            resize((int) (size  * RESZ_FACTOR));
         }
         items[nextLast] = item;
         nextLast = nextIndex(nextLast);
@@ -128,7 +129,7 @@ public class ArrayDeque<T> {
 
         // downsizing
         if ((items.length > 16) && (size / items.length) <= MEMO_USE_RATIO) {
-            resize(size);
+            resize((int) (size  * RESZ_FACTOR));
         }
         return firstItemOld;
     }
@@ -148,7 +149,7 @@ public class ArrayDeque<T> {
 
         // downsizing
         if ((items.length > 16) && (size / items.length) <= MEMO_USE_RATIO) {
-            resize(size);
+            resize((int) (size  * RESZ_FACTOR));
         }
         return lastItemOld;
     }
