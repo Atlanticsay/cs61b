@@ -1,6 +1,10 @@
 import static org.junit.Assert.*;
 
+import java.lang.annotation.Target;
+
 import org.junit.Test;
+
+import jdk.jfr.Timestamp;
 
 public class IntListTest {
 
@@ -64,6 +68,18 @@ public class IntListTest {
         IntList exp = IntList.of(1, 2, 3, 4, 5, 6);
         assertEquals(exp, IntList.catenate(A, B));
         assertEquals(IntList.of(1, 2, 3), A);
+    }
+
+    @Test(timeout = 1000)
+    public void testReverse() {
+        IntList A = IntList.of(1, 2, 3, 4);
+        IntList exp = IntList.of(4, 3, 2, 1);
+        assertEquals(exp, IntList.reverse(A));
+        assertNotEquals(IntList.of(1, 2, 3), A);
+
+        IntList B = new IntList();
+        assertEquals(null, IntList.reverse(B));
+
     }
 
     /** If you're running this from the command line, you'll need
