@@ -1,6 +1,6 @@
 /** ArrayDeque: Double ended list based on the array.
     @author Yun G*/
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
 
     private int size;
     private T[] items;
