@@ -39,7 +39,7 @@ public class PercolationStats {
         }
         int[] xy = new int[2];
         xy[0] = idx / gridLen;
-        xy[1] = idx - 5 * xy[0];
+        xy[1] = idx - gridLen * xy[0];
         return xy;
     }
 

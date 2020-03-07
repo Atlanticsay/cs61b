@@ -38,9 +38,12 @@ public class Percolation {
 
     /** open the site (row, col) if it is not open already */
     public void open(int row, int col) {
-        if (((row < 0) || (row > gridLen - 1)) ||
-             ((col < 0) || (col > gridLen - 1))) {
+        if (((row < 0) || (row > gridLen - 1))
+             || ((col < 0) || (col > gridLen - 1))) {
             throw new IndexOutOfBoundsException();
+        }
+        if (isOpen(row, col)) {
+            return;
         }
         numOfOpen++;
         gridOpen[row][col] = true;
@@ -68,7 +71,7 @@ public class Percolation {
         }
 
         if (row == 0) {
-            gridWQU.union( virtualTop, idx);
+            gridWQU.union(virtualTop, idx);
             gridWQUNoBottom.union(virtualTop, idx);
         }
         if (row == (gridLen - 1)) {
@@ -78,8 +81,8 @@ public class Percolation {
 
     /** whether is the site (row, col) open */
     public boolean isOpen(int row, int col) {
-        if (((row < 0) || (row > gridLen - 1)) ||
-             ((col < 0) || (col > gridLen - 1))) {
+        if (((row < 0) || (row > gridLen - 1))
+             || ((col < 0) || (col > gridLen - 1))) {
             throw new IndexOutOfBoundsException();
         }
         return gridOpen[row][col];
@@ -87,8 +90,8 @@ public class Percolation {
 
     private boolean isOpen(int idx) {
         int[] rc = idx2XY(idx);
-        if (((rc[0] < 0) || (rc[0] > gridLen - 1)) ||
-             ((rc[1] < 0) || (rc[1] > gridLen - 1))) {
+        if (((rc[0] < 0) || (rc[0] > gridLen - 1))
+            || ((rc[1] < 0) || (rc[1] > gridLen - 1))) {
             throw new IndexOutOfBoundsException();
         }
         return gridOpen[rc[0]][rc[1]];
@@ -96,8 +99,8 @@ public class Percolation {
 
     /** is the site (row, col) full? */
     public boolean isFull(int row, int col) {
-        if (((row < 0) || (row > gridLen - 1)) ||
-             ((col < 0) || (col > gridLen - 1))) {
+        if (((row < 0) || (row > gridLen - 1))
+            || ((col < 0) || (col > gridLen - 1))) {
             throw new IndexOutOfBoundsException();
         }
         int idx = xyTo1D(row, col);
@@ -133,6 +136,8 @@ public class Percolation {
 
     /** use for unit testing (not required,
      * but keep this here for the autograder) */
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+
+    }
 
 }
