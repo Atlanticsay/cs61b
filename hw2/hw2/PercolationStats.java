@@ -24,12 +24,16 @@ public class PercolationStats {
 
     // Randomly open sites in a given grid
     private void openSitesRandom(Percolation p, int N) {
-        int idx = StdRandom.uniform(0, N * N -1);
-        int[] id2d = idx2XY(idx, N);
-        if (p.isOpen(id2d[0], id2d[1])) {
-            return;
-        }
-        p.open(id2d[0], id2d[1]);
+        int row = StdRandom.uniform(N);
+        int col = StdRandom.uniform(N);
+        p.open(row, col);
+
+//        int idx = StdRandom.uniform(0, N * N - 1);
+//        int[] id2d = idx2XY(idx, N);
+//        if (p.isOpen(id2d[0], id2d[1])) {
+//            return;
+//        }
+//        p.open(id2d[0], id2d[1]);
     }
 
     // convert the index to x, y coordinate in the grid
