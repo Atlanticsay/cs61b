@@ -22,9 +22,9 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class PercolationVisualizer {
-/*
+
     // delay in miliseconds (controls animation speed)
-    private static final int DELAY = 100;
+    private static final int DELAY = 1;
 
     // draw N-by-N percolation system
     public static void draw(Percolation perc, int N) {
@@ -66,22 +66,24 @@ public class PercolationVisualizer {
         Percolation perc = new Percolation(N);
 
         // turn on animation mode
-        StdDraw.show(0);
+        StdDraw.show();
 
         // repeatedly read in sites to open and draw resulting system
         draw(perc, N);
-        StdDraw.show(DELAY);
+        StdDraw.show();
+        StdDraw.pause(DELAY);
         while (!in.isEmpty()) {
             int i = in.readInt();
             int j = in.readInt();
             perc.open(i, j);
             draw(perc, N);
-            StdDraw.show(DELAY);
+            StdDraw.show();
+            StdDraw.pause(DELAY);
         }
     }
 
     public static void main(String[] args) {
         String filename = args[0];
         simulateFromFile(filename);
-    }*/
+    }
 }
