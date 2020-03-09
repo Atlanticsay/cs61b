@@ -1,5 +1,7 @@
 package hw3.hash;
 
+import edu.princeton.cs.algs4.StdRandom;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,19 @@ public class HashTableVisualizer {
         HashTableDrawingUtility.setScale(scale);
         List<Oomage> oomies = new ArrayList<>();
         for (int i = 0; i < N; i += 1) {
-           oomies.add(SimpleOomage.randomSimpleOomage());
+//           oomies.add(SimpleOomage.randomSimpleOomage());
+            oomies.add(ComplexOomage.randomComplexOomage());
+//            oomies.add(new ComplexOomage(generateBadParams()));
         }
         visualize(oomies, M, scale);
+    }
+
+    private static List<Integer> generateBadParams() {
+        List<Integer> params = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            params.add(i);
+        }
+        return params;
     }
 
     public static void visualize(List<Oomage> oomages, int M, double scale) {
