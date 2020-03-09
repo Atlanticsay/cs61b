@@ -47,10 +47,11 @@ public class TestComplexOomage {
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(deadlyList, 10));
     }
 
+    /** If the hashcode exceeds 256e3, it will overflow to 0.*/
     private List<Integer> generateBadParams() {
         List<Integer> params = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            params.add(i);
+            params.add(1);
         }
         return params;
     }

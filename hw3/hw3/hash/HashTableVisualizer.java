@@ -24,8 +24,8 @@ public class HashTableVisualizer {
         List<Oomage> oomies = new ArrayList<>();
         for (int i = 0; i < N; i += 1) {
 //           oomies.add(SimpleOomage.randomSimpleOomage());
-            oomies.add(ComplexOomage.randomComplexOomage());
-//            oomies.add(new ComplexOomage(generateBadParams()));
+//            oomies.add(ComplexOomage.randomComplexOomage());
+            oomies.add(new ComplexOomage(generateBadParams()));
         }
         visualize(oomies, M, scale);
     }
@@ -33,10 +33,11 @@ public class HashTableVisualizer {
     private static List<Integer> generateBadParams() {
         List<Integer> params = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            params.add(i);
+            params.add(1);
         }
         return params;
     }
+
 
     public static void visualize(List<Oomage> oomages, int M, double scale) {
         HashTableDrawingUtility.drawLabels(M);
