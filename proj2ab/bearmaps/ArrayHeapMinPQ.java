@@ -1,6 +1,6 @@
 package bearmaps;
 
-/** @Author Atlantic
+/** @Author Atlantic (Y)
  *  @Description The class ArrayHeapMinPQ is a priority queue
  *  based on the array heap.
  *  The priority is a given number. */
@@ -217,13 +217,13 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
      * becomes larger than one or both of its two children.
      * @source https://algs4.cs.princeton.edu/24pq/*/
     private void sink(int index) {
-        if (leftChildren(index) > size) { // no children
+        if (leftChildren(index) > size) { // 1. no children
             return;
         }
 
-        int j = leftChildren(index);
+        int j = leftChildren(index); // 2. one child
         if ((j < size) && greater(leftChildren(index), rightChildren(index))) {
-            j = rightChildren(index); // the smaller child
+            j = rightChildren(index); // 3. two children: the smaller child
         }
 
         if (less(index, j)) {
