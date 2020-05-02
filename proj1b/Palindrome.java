@@ -73,6 +73,35 @@ public class Palindrome {
     		ss.add(s);
     	}
     	return ss.size();
+
+
+
+    	public static boolean isBST(TreeNode T) {
+    		return isBSTHelper(T);
+    	}
+    	private static boolean isBSTHelper(TreeNode T) {
+    		valueT = T.value;
+    		valueL = T.left.value;
+    		valueR = T.right.value;
+    		boolean isLeftBST = true;
+    		boolean isRightBST = true;
+
+    		if (valueL != null) {
+    			if (valueL > valueT) {
+    				return false;
+    			}
+    			isLeftBST = isBSTHelper(T.left);
+    		}
+    		if (valueR != null) {
+    			if (valueR < valueT) {
+    				return false;
+    			}
+    			isRightBST = isBSTHelper(T.right);
+    		}
+    		return (isLeftBST && isRightBST);
+    	}
+
+
     }
 
 

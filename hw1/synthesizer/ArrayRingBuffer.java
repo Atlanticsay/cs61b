@@ -2,9 +2,8 @@ package synthesizer;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-//TODO: Make sure to make this class and all of its methods public
-//TODO: Make sure to make this class extend AbstractBoundedQueue<t>
 public class ArrayRingBuffer<T> implements BoundedQueue<T> {
+
     /* First stores the index of the least recently inserted item. */
     private int first;
     /* Last stores the index one beyond the most recently inserted item. */
@@ -58,7 +57,6 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
      * covered Monday.
      */
     public void enqueue(T x) {
-        // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
         if (fillCount == capacity) {
             throw new RuntimeException("Ring buffer overflow");
         }
@@ -73,7 +71,6 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
      * covered Monday.
      */
     public T dequeue() {
-        // TODO: Dequeue the first item. Don't forget to decrease fillCount and update
         if (fillCount == 0) {
             throw new RuntimeException("Ring Buffer underflow");
         }
@@ -89,15 +86,11 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
      * Return (but do not delete) item from the front
      */
     public T peek() {
-        // TODO: Return the first item. None of your instance variables should change.
         if (fillCount == 0) {
             throw new RuntimeException("Ring Buffer underflow");
         }
         return rb[first];
     }
-
-    // TODO: When you get to part 5, implement the needed code to support iteration.
-
 
     @Override
     public boolean equals(Object o) {
